@@ -26,9 +26,17 @@ public class ContextMenu implements ContextMenuItemsProvider {
         if (event.isFromTool(ToolType.REPEATER))
         {
             List<Component> menuItemList = new ArrayList<>();
-            JMenuItem doAnalysisItem = new JMenuItem("Do analysis");
+            JMenuItem doAnalysisItem;
+            if(hasHotKey) {
+                doAnalysisItem = new JMenuItem("Do analysis (CTRL+ALT+A)");
+            } else {
+                doAnalysisItem = new JMenuItem("Do analysis");
+            }
             doAnalysisItem.setEnabled(AI.isAiSupported());
             HttpRequestResponse requestResponse = event.messageEditorRequestResponse().isPresent() ? event.messageEditorRequestResponse().get().requestResponse() : event.selectedRequestResponses().getFirst();
+            if(requestResponse.httpService() == null) {
+                return null;
+            }
             String requestKey = Utils.generateRequestKey(requestResponse.request());
             doAnalysisItem.addActionListener(e -> {
                 JSONArray headersAndParameters = RequestDiffer.generateHeadersAndParametersJson(requestHistory.get(requestKey).toArray(new HttpRequest[0]));
@@ -38,6 +46,7 @@ public class ContextMenu implements ContextMenuItemsProvider {
                     JOptionPane.showMessageDialog(null, nothingToAnalyseMsg);
                     api.logging().logToOutput(nothingToAnalyseMsg);
                 }
+                Utils.resetHistory(requestKey, false);
             });
             menuItemList.add(doAnalysisItem);
             JMenuItem resetHistoryItem = new JMenuItem("Reset request history for this request");
