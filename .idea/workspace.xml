@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b2ea072-edc7-4ae8-b011-f1b62e16c4bb" name="Changes" comment="Added report feedback menu" />
+    <list default="true" id="5b2ea072-edc7-4ae8-b011-f1b62e16c4bb" name="Changes" comment="Added hasHotKey flag" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -276,94 +276,27 @@
       <workItem from="1739955886949" duration="581000" />
       <workItem from="1739957627104" duration="1913000" />
       <workItem from="1739968696631" duration="18059000" />
-    </task>
-    <task id="LOCAL-00012" summary="Added more messages to the console">
-      <option name="closed" value="true" />
-      <created>1739347441940</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1739347441940</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Fixed output formatting">
-      <option name="closed" value="true" />
-      <created>1739347630246</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1739347630246</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Added name file">
-      <option name="closed" value="true" />
-      <created>1739347658815</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1739347658815</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Only applied URL encoding when the vector is not URL encoded.">
-      <option name="closed" value="true" />
-      <created>1739348543340</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1739348543340</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Changed string builder to string">
-      <option name="closed" value="true" />
-      <created>1739348633450</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1739348633450</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Optimised the prompt">
-      <option name="closed" value="true" />
-      <created>1739349393588</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1739349393588</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Added console message before sending to the AI">
-      <option name="closed" value="true" />
-      <created>1739350155005</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1739350155005</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Added context menu and auto invoke setting">
-      <option name="closed" value="true" />
-      <created>1739354984222</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1739354984222</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Added context menu class">
-      <option name="closed" value="true" />
-      <created>1739355003617</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1739355003617</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Fixed prompt">
-      <option name="closed" value="true" />
-      <created>1739355307348</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1739355307348</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Added logo and readme">
-      <option name="closed" value="true" />
-      <created>1739358487107</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1739358487107</updated>
+      <workItem from="1740132490831" duration="642000" />
+      <workItem from="1740389895193" duration="52000" />
+      <workItem from="1740997427180" duration="481000" />
+      <workItem from="1741076776307" duration="6645000" />
+      <workItem from="1741600998394" duration="70000" />
+      <workItem from="1742300896081" duration="1140000" />
+      <workItem from="1742395225601" duration="40000" />
+      <workItem from="1742398090234" duration="16000" />
+      <workItem from="1742398590857" duration="41000" />
+      <workItem from="1742542883250" duration="194000" />
+      <workItem from="1742543128661" duration="10000" />
+      <workItem from="1742543717289" duration="4000" />
+      <workItem from="1742543878018" duration="154000" />
+      <workItem from="1742561855129" duration="27000" />
+      <workItem from="1742567918072" duration="1771000" />
+      <workItem from="1743415490438" duration="32000" />
+      <workItem from="1743495692254" duration="231000" />
+      <workItem from="1743496929566" duration="10176000" />
+      <workItem from="1743514889564" duration="19000" />
+      <workItem from="1743580387167" duration="2129000" />
+      <workItem from="1743671478174" duration="167000" />
     </task>
     <task id="LOCAL-00023" summary="Fixed image path">
       <option name="closed" value="true" />
@@ -669,23 +602,101 @@
       <option name="project" value="LOCAL" />
       <updated>1740132275223</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Updated manifest">
+      <option name="closed" value="true" />
+      <created>1740132528897</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1740132528898</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Fixed bug when modifying the request which was skipping the path.">
+      <option name="closed" value="true" />
+      <created>1741093585573</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1741093585573</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Added hotkey support for do analysis">
+      <option name="closed" value="true" />
+      <created>1741095733238</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1741095733238</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Updated manifest">
+      <option name="closed" value="true" />
+      <created>1741095866552</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1741095866552</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Removed library">
+      <option name="closed" value="true" />
+      <created>1742542963840</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1742542963840</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Updated git ignore">
+      <option name="closed" value="true" />
+      <created>1742542993923</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1742542993923</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Fixed bug if you right-click on a repeater message without a valid HttpService">
+      <option name="closed" value="true" />
+      <created>1742544013660</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1742544013660</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Changed jar to compile only dep">
+      <option name="closed" value="true" />
+      <created>1743495755780</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1743495755781</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Updated bulk scan to use newer montoya features, updated capabilities check to use EA build number. Moved OrganiseVectors to Burp/ to account for package private methods in BulkScan">
+      <option name="closed" value="true" />
+      <created>1743511188519</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1743511188519</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Added register hot key check">
+      <option name="closed" value="true" />
+      <created>1743580523589</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1743580523589</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Added hasHotKey flag">
+      <option name="closed" value="true" />
+      <created>1743671560514</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1743671560514</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed duplicate code" />
-    <MESSAGE value="Changed code to use a HashMap of requests and keyed it by parameters names which allows multiple repeater tabs to be used. When there is more than one parameter used it should pick the most frequent." />
-    <MESSAGE value="Improved fingerprint list" />
-    <MESSAGE value="Removed unused imports" />
-    <MESSAGE value="Moved to public montoya API" />
-    <MESSAGE value="Tweak the prompt to follow RFCs if detected and avoid using spoofed domains." />
-    <MESSAGE value="Refactored check for differences. Added a vector reducer." />
-    <MESSAGE value="Removed unused import" />
-    <MESSAGE value="Fixed settings when resetting to defaults" />
-    <MESSAGE value="Added setting to reduce vectors if they fail" />
     <MESSAGE value="Removed BApp description and manifest" />
     <MESSAGE value="Updated bulk scan" />
     <MESSAGE value="Completed code review feedback:&#10;- Added setting to debug output&#10;- Made settings two columns &#10;- Removed unneeded method in AI class" />
@@ -701,6 +712,16 @@
     <MESSAGE value="Moved screenshot" />
     <MESSAGE value="Updated installation instructions based on James' feedback" />
     <MESSAGE value="Added report feedback menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added report feedback menu" />
+    <MESSAGE value="Fixed bug when modifying the request which was skipping the path." />
+    <MESSAGE value="Added hotkey support for do analysis" />
+    <MESSAGE value="Updated manifest" />
+    <MESSAGE value="Removed library" />
+    <MESSAGE value="Updated git ignore" />
+    <MESSAGE value="Fixed bug if you right-click on a repeater message without a valid HttpService" />
+    <MESSAGE value="Changed jar to compile only dep" />
+    <MESSAGE value="Updated bulk scan to use newer montoya features, updated capabilities check to use EA build number. Moved OrganiseVectors to Burp/ to account for package private methods in BulkScan" />
+    <MESSAGE value="Added register hot key check" />
+    <MESSAGE value="Added hasHotKey flag" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added hasHotKey flag" />
   </component>
 </project>
