@@ -3,7 +3,7 @@ ExtensionType: 1
 Name: Shadow Repeater
 RepoName: shadow-repeater
 ScreenVersion: 1.2.0
-SerialVersion: 6
+SerialVersion: 7
 MinPlatformVersion: 23
 ProOnly: True
 Author: Gareth Heyes, PortSwigger
