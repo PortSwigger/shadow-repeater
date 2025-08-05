@@ -2,9 +2,9 @@ Uuid: 7be1798d600647688bb2f051da37f504
 ExtensionType: 1
 Name: Shadow Repeater
 RepoName: shadow-repeater
-ScreenVersion: 1.0.5
+ScreenVersion: 1.2.0
 SerialVersion: 4
-MinPlatformVersion: 19
+MinPlatformVersion: 23
 ProOnly: True
 Author: Gareth Heyes, PortSwigger
 ShortDescription: Enhance Repeater by generating and testing payload variations to uncover hidden vulnerabilities, bypasses, and unexpected responses across various attack vectors.
