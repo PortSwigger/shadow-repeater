@@ -7,7 +7,9 @@ import burp.api.montoya.core.Registration;
 import burp.api.montoya.http.message.requests.HttpRequest;
 import burp.api.montoya.http.message.responses.HttpResponse;
 import burp.api.montoya.ui.contextmenu.MessageEditorHttpRequestResponse;
+import burp.api.montoya.ui.hotkey.HotKey;
 import burp.api.montoya.ui.hotkey.HotKeyContext;
+import burp.api.montoya.ui.hotkey.HotKeyHandler;
 import burp.api.montoya.ui.settings.SettingsPanelBuilder;
 import burp.api.montoya.ui.settings.SettingsPanelPersistence;
 import burp.api.montoya.ui.settings.SettingsPanelSetting;
@@ -22,15 +24,13 @@ import burp.api.montoya.extension.ExtensionUnloadingHandler;
 import org.json.JSONArray;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ShadowRepeaterExtension implements BurpExtension, ExtensionUnloadingHandler, IBurpExtender {
     public static String extensionName = "Shadow Repeater";
-    public static String version = "v1.2.0";
+    public static String version = "v1.2.3";
     public static MontoyaApi api;
     public static boolean hasHotKey = false;
     public static HashMap<String, Integer> requestHistoryPos = new HashMap<>();
@@ -54,36 +54,12 @@ public class ShadowRepeaterExtension implements BurpExtension, ExtensionUnloadin
         api.userInterface().menuBar().registerMenu(Utils.generateMenuBar());
         Burp burp = new Burp(montoyaApi.burpSuite().version());
         if(burp.hasCapability(Burp.Capability.REGISTER_HOTKEY)) {
-            Registration registration = montoyaApi.userInterface().registerHotKeyHandler(HotKeyContext.HTTP_MESSAGE_EDITOR, "Ctrl+Alt+A",
-            event -> {
-                if (event.messageEditorRequestResponse().isEmpty() || !AI.isAiSupported()) {
-                    return;
-                }
-                MessageEditorHttpRequestResponse requestResponse = event.messageEditorRequestResponse().get();
-                if(requestResponse.selectionContext().toString().equalsIgnoreCase("request")) {
-                    String requestKey = Utils.generateRequestKey(requestResponse.requestResponse().request());
-                    JSONArray headersAndParameters = RequestDiffer.generateHeadersAndParametersJson(requestHistory.get(requestKey).toArray(new HttpRequest[0]));
-                    if (!headersAndParameters.isEmpty()) {
-                        VariationAnalyser.analyse(headersAndParameters, requestResponse.requestResponse().request(), new HttpResponse[0]);
-                    } else {
-                        JOptionPane.showMessageDialog(null, nothingToAnalyseMsg);
-                        api.logging().logToOutput(nothingToAnalyseMsg);
-                    }
-                    Utils.resetHistory(requestKey, false);
-                }
-            });
-            if(registration.isRegistered()) {
-                api.logging().logToOutput("Successfully registered hotkey handler");
-                hasHotKey = true;
-            } else {
-                api.logging().logToError("Failed to register hotkey handler");
-            }
+            registerAllHotkeys(montoyaApi, burp);
         }
-
         settings = SettingsPanelBuilder.settingsPanel()
                 .withPersistence(SettingsPanelPersistence.USER_SETTINGS)
                 .withTitle("Shadow Repeater Settings")
-                .withDescription("""                       
+                .withDescription("""
                         Auto invoke - Runs Shadow Repeater automatically after the amount of requests specified.
                         Amount of requests - Amount of Repeater requests before invoking Shadow Repeater
                         Debug output - Outputs debug information to the console.
@@ -91,8 +67,11 @@ public class ShadowRepeaterExtension implements BurpExtension, ExtensionUnloadin
                         Reduce vectors - Should Shadow Repeater reduce the vectors?
                         Maximum variation amount - Maximum number of variations to create
                         Excluded headers - Comma separated list of headers to to exclude from analysis
+                        Time difference threshold (ms) - Minimum time difference in milliseconds to detect timing-based attacks
+                        Stop when first difference found - When Shadow Repeater finds a difference it should stop looking for more.
+                        Additional LLM instructions - Give Shadow Repeater some additional instructions
                         """)
-                .withKeywords("Repeater", "Shadow")
+                .withKeywords("Repeater", "Shadow", "Shadow Repeater settings")
                 .withSettings(
                         SettingsPanelSetting.booleanSetting("Auto invoke", true),
                         SettingsPanelSetting.integerSetting("Amount of requests", 5),
@@ -100,10 +79,73 @@ public class ShadowRepeaterExtension implements BurpExtension, ExtensionUnloadin
                         SettingsPanelSetting.booleanSetting("Debug AI", false),
                         SettingsPanelSetting.booleanSetting("Reduce vectors", false),
                         SettingsPanelSetting.integerSetting("Maximum variation amount", 10),
-                        SettingsPanelSetting.stringSetting("Excluded headers", "Authorization,Cookie,Content-Length,Connection")
+                        SettingsPanelSetting.stringSetting("Excluded headers", "Authorization,Cookie,Content-Length,Connection"),
+                        SettingsPanelSetting.integerSetting("Time difference threshold (ms)", 4000),
+                        SettingsPanelSetting.booleanSetting("Stop when first difference found", false),
+                        SettingsPanelSetting.stringSetting("Additional LLM instructions", "")
                 )
                 .build();
         api.userInterface().registerSettingsPanel(settings);
+    }
+
+    private void registerAllHotkeys(MontoyaApi montoyaApi, Burp burp) {
+        List<HotkeyDefinition> hotkeys = Arrays.asList(
+        new HotkeyDefinition("Analyse", "Ctrl+Alt+A", event -> {
+            if (event.messageEditorRequestResponse().isEmpty() || !AI.isAiSupported()) {
+                return;
+            }
+            MessageEditorHttpRequestResponse requestResponse = event.messageEditorRequestResponse().get();
+            if(requestResponse.selectionContext().toString().equalsIgnoreCase("request")) {
+                String requestKey = Utils.generateRequestKey(requestResponse.requestResponse().request());
+                JSONArray headersAndParameters = RequestDiffer.generateHeadersAndParametersJson(requestHistory.get(requestKey).toArray(new HttpRequest[0]));
+                if (!headersAndParameters.isEmpty()) {
+                    VariationAnalyser.analyse(headersAndParameters, requestResponse.requestResponse().request(), new HttpResponse[0]);
+                } else {
+                    JOptionPane.showMessageDialog(null, nothingToAnalyseMsg);
+                    api.logging().logToOutput(nothingToAnalyseMsg);
+                }
+                Utils.resetHistory(requestKey, false);
+            }
+        }));
+
+        for (HotkeyDefinition hotkey : hotkeys) {
+            registerHotkey(montoyaApi, burp, hotkey);
+        }
+    }
+
+    private static class HotkeyDefinition {
+        final String name;
+        final String keyCombo;
+        final HotKeyHandler handler;
+
+        HotkeyDefinition(String name, String keyCombo, HotKeyHandler handler) {
+            this.name = name;
+            this.keyCombo = keyCombo;
+            this.handler = handler;
+        }
+    }
+
+    private void registerHotkey(MontoyaApi montoyaApi, Burp burp, HotkeyDefinition hotkey) {
+        Registration registration;
+
+        if(burp.hasCapability(Burp.Capability.REGISTER_HOTKEY_WITH_NAME)) {
+            registration = montoyaApi.userInterface().registerHotKeyHandler(
+                    HotKeyContext.HTTP_MESSAGE_EDITOR,
+                    HotKey.hotKey(hotkey.name, hotkey.keyCombo),
+                    hotkey.handler);
+        } else {
+            registration = montoyaApi.userInterface().registerHotKeyHandler(
+                    HotKeyContext.HTTP_MESSAGE_EDITOR,
+                    hotkey.keyCombo,
+                    hotkey.handler);
+        }
+
+        if(registration.isRegistered()) {
+            montoyaApi.logging().logToOutput("Successfully registered hotkey: " + hotkey.name + " (" + hotkey.keyCombo + ")");
+            hasHotKey = true;
+        } else {
+            montoyaApi.logging().logToError("Failed to register hotkey: " + hotkey.name + " (" + hotkey.keyCombo + ")");
+        }
     }
 
     @Override

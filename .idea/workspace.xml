@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b2ea072-edc7-4ae8-b011-f1b62e16c4bb" name="Changes" comment="Replaced settings class with Montoya settings build. Added excluded headers. Fixed a couple of issues like the modified path not sending a forward slash.">
+    <list default="true" id="5b2ea072-edc7-4ae8-b011-f1b62e16c4bb" name="Changes" comment="Updated bulkScan-all.jar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +40,11 @@
                 <item name="shadow-repeater" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="shadow-repeater" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -327,118 +332,26 @@
       <workItem from="1750070239582" duration="37000" />
       <workItem from="1750257043891" duration="6258000" />
       <workItem from="1750321670257" duration="173000" />
-    </task>
-    <task id="LOCAL-00026" summary="Added reset request history option to context menu">
-      <option name="closed" value="true" />
-      <created>1739359829346</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1739359829346</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Removed unused imports">
-      <option name="closed" value="true" />
-      <created>1739360185888</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1739360185888</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Updated warning message and BApp description">
-      <option name="closed" value="true" />
-      <created>1739370086850</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1739370086850</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Updated readme">
-      <option name="closed" value="true" />
-      <created>1739370476439</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1739370476439</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Made the AI return plain text vectors separated by new lines. Tweaked the prompt to remove JSON.">
-      <option name="closed" value="true" />
-      <created>1739372431778</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1739372431778</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Removed message that sounds negative when multiple variations failed to produce difference">
-      <option name="closed" value="true" />
-      <created>1739373483871</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1739373483871</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Prevented the AI from spoofing domains and generating random domain names">
-      <option name="closed" value="true" />
-      <created>1739374682162</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1739374682162</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Reduced control values request and skipped duplicate entries in paramHeaders list">
-      <option name="closed" value="true" />
-      <created>1739435141934</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1739435141934</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Removed domain spoofing from the prompt">
-      <option name="closed" value="true" />
-      <created>1739436632231</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1739436632231</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Removed duplicate code">
-      <option name="closed" value="true" />
-      <created>1739436984627</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1739436984627</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Changed code to use a HashMap of requests and keyed it by parameters names which allows multiple repeater tabs to be used. When there is more than one parameter used it should pick the most frequent.">
-      <option name="closed" value="true" />
-      <created>1739444857793</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1739444857793</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Improved fingerprint list">
-      <option name="closed" value="true" />
-      <created>1739449116345</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1739449116346</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Removed unused imports">
-      <option name="closed" value="true" />
-      <created>1739450133667</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1739450133667</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Moved to public montoya API">
-      <option name="closed" value="true" />
-      <created>1739523582609</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1739523582609</updated>
+      <workItem from="1760454635164" duration="17000" />
+      <workItem from="1760454686842" duration="637000" />
+      <workItem from="1761246068908" duration="3923000" />
+      <workItem from="1761252487930" duration="186000" />
+      <workItem from="1761252838354" duration="61000" />
+      <workItem from="1761287849256" duration="7201000" />
+      <workItem from="1761308758534" duration="86000" />
+      <workItem from="1761309236128" duration="34000" />
+      <workItem from="1761309558507" duration="285000" />
+      <workItem from="1761326203551" duration="768000" />
+      <workItem from="1761333559154" duration="1539000" />
+      <workItem from="1761688846495" duration="33000" />
+      <workItem from="1761773768476" duration="1518000" />
+      <workItem from="1762429640089" duration="2000" />
+      <workItem from="1762431420455" duration="208000" />
+      <workItem from="1762800306446" duration="3556000" />
+      <workItem from="1763046451312" duration="103000" />
+      <workItem from="1763048311418" duration="58000" />
+      <workItem from="1763121016289" duration="1153000" />
+      <workItem from="1763141780660" duration="12000" />
     </task>
     <task id="LOCAL-00040" summary="Tweak the prompt to follow RFCs if detected and avoid using spoofed domains.">
       <option name="closed" value="true" />
@@ -720,27 +633,125 @@
       <option name="project" value="LOCAL" />
       <updated>1750321631173</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Added named hotkey support. Started work on timing differences.">
+      <option name="closed" value="true" />
+      <created>1761248866637</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1761248866637</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Improve timing difference detection.">
+      <option name="closed" value="true" />
+      <created>1761251822204</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1761251822204</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Removed incorrect code">
+      <option name="closed" value="true" />
+      <created>1761252887471</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1761252887471</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Improved timing differences">
+      <option name="closed" value="true" />
+      <created>1761306108272</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1761306108272</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Updated keywords">
+      <option name="closed" value="true" />
+      <created>1761309265650</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1761309265650</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Renamed setting">
+      <option name="closed" value="true" />
+      <created>1761334841139</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1761334841140</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Updated capability">
+      <option name="closed" value="true" />
+      <created>1761688872010</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1761688872010</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Added additional instructions setting">
+      <option name="closed" value="true" />
+      <created>1761774862625</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1761774862625</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Only added additional instructions if the setting isn't empty">
+      <option name="closed" value="true" />
+      <created>1761775172572</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1761775172572</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Only sent the base request and response once">
+      <option name="closed" value="true" />
+      <created>1762431625582</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1762431625582</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Used anomaly ranking Montoya feature for ordering variants that create differences">
+      <option name="closed" value="true" />
+      <created>1762804251013</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1762804251013</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Updated capability check with correct Burp version">
+      <option name="closed" value="true" />
+      <created>1763046485409</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1763046485409</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Updated Montoya dep">
+      <option name="closed" value="true" />
+      <created>1763048362951</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1763048362951</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Updated bulkScan-all.jar">
+      <option name="closed" value="true" />
+      <created>1763123170229</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1763123170230</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed JSON type" />
-    <MESSAGE value="Updated workspace" />
-    <MESSAGE value="Also encode URL request bodies if % doesn't exist" />
-    <MESSAGE value="Updated logo" />
-    <MESSAGE value="Improved prompts and URL encoded detection. Trimmed vectors. Added spaces to control values." />
-    <MESSAGE value="Improved prompt" />
-    <MESSAGE value="Fixed URL encoding detection and added screenshot" />
-    <MESSAGE value="Added video demo" />
-    <MESSAGE value="Moved video demo" />
-    <MESSAGE value="Moved screenshot" />
-    <MESSAGE value="Updated installation instructions based on James' feedback" />
-    <MESSAGE value="Added report feedback menu" />
-    <MESSAGE value="Fixed bug when modifying the request which was skipping the path." />
-    <MESSAGE value="Added hotkey support for do analysis" />
     <MESSAGE value="Updated manifest" />
     <MESSAGE value="Removed library" />
     <MESSAGE value="Updated git ignore" />
@@ -752,6 +763,20 @@
     <MESSAGE value="Used hasHotKey flag instead of capability in context menu" />
     <MESSAGE value="Added JSON support in request differ" />
     <MESSAGE value="Replaced settings class with Montoya settings build. Added excluded headers. Fixed a couple of issues like the modified path not sending a forward slash." />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced settings class with Montoya settings build. Added excluded headers. Fixed a couple of issues like the modified path not sending a forward slash." />
+    <MESSAGE value="Added named hotkey support. Started work on timing differences." />
+    <MESSAGE value="Improve timing difference detection." />
+    <MESSAGE value="Removed incorrect code" />
+    <MESSAGE value="Improved timing differences" />
+    <MESSAGE value="Updated keywords" />
+    <MESSAGE value="Renamed setting" />
+    <MESSAGE value="Updated capability" />
+    <MESSAGE value="Added additional instructions setting" />
+    <MESSAGE value="Only added additional instructions if the setting isn't empty" />
+    <MESSAGE value="Only sent the base request and response once" />
+    <MESSAGE value="Used anomaly ranking Montoya feature for ordering variants that create differences" />
+    <MESSAGE value="Updated capability check with correct Burp version" />
+    <MESSAGE value="Updated Montoya dep" />
+    <MESSAGE value="Updated bulkScan-all.jar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated bulkScan-all.jar" />
   </component>
 </project>
