@@ -4,7 +4,7 @@ Name: Shadow Repeater
 RepoName: shadow-repeater
 ScreenVersion: 1.2.3
 SerialVersion: 8
-MinPlatformVersion: 27
+MinPlatformVersion: 19
 ProOnly: True
 Author: Gareth Heyes, PortSwigger
 ShortDescription: Enhance Repeater by generating and testing payload variations to uncover hidden vulnerabilities, bypasses, and unexpected responses across various attack vectors.
