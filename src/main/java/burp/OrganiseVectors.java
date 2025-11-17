@@ -1,6 +1,9 @@
 package burp;
 
+import burp.api.montoya.http.handler.TimingData;
 import burp.api.montoya.http.message.responses.HttpResponse;
+import burp.api.montoya.utilities.rank.RankedHttpRequestResponse;
+import burp.shadow.repeater.Burp;
 import burp.shadow.repeater.ShadowRepeaterExtension;
 import burp.shadow.repeater.ai.VectorReducer;
 import burp.shadow.repeater.utils.Utils;
@@ -11,32 +14,100 @@ import org.json.JSONObject;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.Duration;
+import java.util.*;
+import java.util.Comparator;
 
 import static burp.shadow.repeater.ShadowRepeaterExtension.*;
 
 public class OrganiseVectors {
     public static boolean checkForDifferences(JSONArray vectors, HttpRequestResponse baseRequestResponse, CustomResponseGroup responsesAnalyser, HttpRequest req, String type, String name) {
+        Burp burp = new Burp(api.burpSuite().version());
+        int timeDifferenceMs = settings.getInteger("Time difference threshold (ms)");
+        boolean shouldStopWhenFoundFirstDifference = settings.getBoolean("Stop when first difference found");
+        boolean foundDifference = false;
+        Duration baseResponseTime = null;
+        boolean hasSentBaseReqResponse = false;
+        ArrayList<HttpRequestResponse> organizerItems = new ArrayList<>();
+        Optional<TimingData> timing = baseRequestResponse.timingData();
+        if(timing.isPresent()) {
+            baseResponseTime = timing.get().timeBetweenRequestSentAndStartOfResponse();
+        }
         for(int j = 0; j < vectors.length(); j++) {
             HttpRequest modifiedReq = null;
             String vector = vectors.getJSONObject(j).getString("vector");
             modifiedReq = Utils.modifyRequest(req, type, name, vector);
             if(modifiedReq != null) {
                 HttpRequestResponse requestResponse = api.http().sendRequest(modifiedReq);
+                if(requestResponse.response() == null) continue;
+                if(baseResponseTime != null) {
+                    Optional<TimingData> vectorTiming = requestResponse.timingData();
+                    if(vectorTiming.isPresent()) {
+                        long baseMs = baseResponseTime.toMillis();
+                        long vectorMs = vectorTiming.get().timeBetweenRequestSentAndStartOfResponse().toMillis();
+
+                        long absoluteDifference = vectorMs - baseMs;
+                        double relativeDifference = baseMs > 0 ? (double) vectorMs / baseMs : 0;
+
+                        if(absoluteDifference >= timeDifferenceMs || (relativeDifference * baseMs) > timeDifferenceMs) {
+                            if(!hasSentBaseReqResponse) {
+                                baseRequestResponse.annotations().setNotes("Base request response");
+                                api.organizer().sendToOrganizer(baseRequestResponse);
+                                hasSentBaseReqResponse = true;
+                            }
+                            String notes = String.format(
+                                "The response has a significant time difference:%n" +
+                                "Base response: %dms%n" +
+                                "Vector response: %dms%n" +
+                                "Difference: %dms (%.1fx slower)%n" +
+                                "Vector: %s",
+                                baseMs, vectorMs, absoluteDifference, relativeDifference, vector
+                            );
+                            requestResponse.annotations().setNotes(notes);
+                            api.organizer().sendToOrganizer(requestResponse);
+                            api.logging().logToOutput("Found an interesting item. Check the organiser to see the results.");
+                            if(shouldStopWhenFoundFirstDifference) return true;
+                            foundDifference = true;
+                        }
+                    }
+                }
                 if(!responsesAnalyser.matches(requestResponse)) {
-                    api.organizer().sendToOrganizer(baseRequestResponse);
+                    if(!hasSentBaseReqResponse) {
+                        baseRequestResponse.annotations().setNotes("Base request response");
+                        api.organizer().sendToOrganizer(baseRequestResponse);
+                        hasSentBaseReqResponse = true;
+                    }
                     String notes = "The response is different in the following ways" +
                             System.lineSeparator() +
                             responsesAnalyser.describeDiff(requestResponse);
+                    notes += System.lineSeparator();
+                    notes += "Vector:"+vector+System.lineSeparator();
                     requestResponse.annotations().setNotes(notes);
-                    api.organizer().sendToOrganizer(requestResponse);
                     api.logging().logToOutput("Found an interesting item. Check the organiser to see the results.");
-                    return true;
+                    if(shouldStopWhenFoundFirstDifference) {
+                        api.organizer().sendToOrganizer(requestResponse);
+                        return true;
+                    } else {
+                        organizerItems.add(requestResponse);
+                    }
+                    foundDifference = true;
                 }
             }
         }
-        return false;
+
+        if(burp.hasCapability(Burp.Capability.ANOMALY_RANK)) {
+            List<RankedHttpRequestResponse>  rankedOrganizerItems = api.utilities().rankingUtils().rank(organizerItems);
+            List<RankedHttpRequestResponse> sortedRankedOrganizerItems = rankedOrganizerItems.stream().sorted(Comparator.comparingInt(RankedHttpRequestResponse::rank).reversed()).toList();
+            for(RankedHttpRequestResponse sortedRankedOrganizerItem : sortedRankedOrganizerItems) {
+                api.organizer().sendToOrganizer(sortedRankedOrganizerItem.requestResponse());
+            }
+        } else {
+            for(HttpRequestResponse organizerItem : organizerItems) {
+                api.organizer().sendToOrganizer(organizerItem);
+            }
+        }
+
+        return foundDifference;
     }
     public static void organise(HttpRequest req, JSONArray variations, JSONArray headersAndParameters, HttpResponse[] repeaterResponses, boolean shouldReduceVectors) {
         ShadowRepeaterExtension.executorService.submit(() -> {
